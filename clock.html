@@ -8,15 +8,15 @@
 </head>
 
 <body translate="no" >
-  <div id="output" 
+  <div id="output"
        style=	"display: inline-block;
 		font-family: monospace;
-		font-size: 30px;
-		text-align: right;
-		color: lightgray; 
-		border-radius: 10px; 
-		padding: 10px; 
-		background-color: rgba(0, 0, 0, 0.75);">
+		font-size: 40px;
+		text-align: centre;
+		color: #FFC336;
+		border-radius: 10px;
+		padding: 10px;
+		background-color: rgba(0, 0, 0, 0.0);">
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
@@ -39,7 +39,7 @@ if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyS
 var c;
 setInterval(
 c = function() {
-	output.innerText = moment().format(urlParams["format"] || 'DD/MM/YYYY HH:mm');
+	output.innerText = moment().format(urlParams["format"] || 'DD/MM/YYYY h:mm A');
 //    output.innerText = moment().format(urlParams["format"] || '');
 }, 1000);
 c();
