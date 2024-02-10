@@ -1,2 +1,4 @@
 # OBS-clock-overlay
-A custom clock overlay for OBS
+A custom test pattern for OBS
+date and time
+beat time
