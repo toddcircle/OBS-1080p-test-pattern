@@ -37,7 +37,10 @@
     // Remove the comma from the formatted date and time
     const formattedDateTime = localDateTime.replace(',', '');
 
-    document.getElementById('localDateTime').innerText = formattedDateTime;
+    // Convert AM/PM to uppercase manually
+    const uppercaseDateTime = formattedDateTime.replace(/(am|pm)/i, match => match.toUpperCase());
+
+    document.getElementById('localDateTime').innerText = uppercaseDateTime;
   }
 
   // Call the function to update local date and time initially
