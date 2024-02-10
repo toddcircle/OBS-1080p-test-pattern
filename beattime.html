@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Beat Time</title>
+  <style>
+    #beatTime {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 40px;
+      text-align: center;
+      color: #FFC336;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.0);
+    }
+  </style>
+</head>
+<body>
+
+<div id="beatTime"></div>
+
+<script>
+  function updateBeatTime() {
+    // Get the current beat time logic here
+    // For example, you might use the current time or a timer
+
+    // For demonstration purposes, let's use the current time in seconds
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+
+    // Calculate beat time (example calculation, you can customize this)
+    const beatsPerMinute = 60; // Change this based on your beat rate
+    const beats = Math.floor(currentTimeInSeconds * (beatsPerMinute / 60));
+
+    // Display the beat time in the specified div
+    document.getElementById('beatTime').innerText = beats;
+  }
+
+  // Call the function to update beat time initially
+  updateBeatTime();
+
+  // Update beat time every second (you can adjust the interval as needed)
+  setInterval(updateBeatTime, 1000);
+</script>
+
+</body>
+</html>
