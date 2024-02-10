@@ -1,48 +1,51 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Date and Time</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Date and Time</title>
+  <style>
+    #localDateTime {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 40px;
+      text-align: center;
+      color: #FFC336;
+      border-radius: 10px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.0);
+    }
+  </style>
 </head>
+<body>
 
-<body translate="no" >
-  <div id="output"
-       style=	"display: inline-block;
-		font-family: monospace;
-		font-size: 40px;
-		text-align: centre;
-		color: #FFC336;
-		border-radius: 10px;
-		padding: 10px;
-		background-color: rgba(0, 0, 0, 0.0);">
-  </div>
+<div id="localDateTime"></div>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
-  <script>
-// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-var urlParams;
-(function () {
-    var match,
-        pl     = /\+/g,  // Regex for replacing addition symbol with a space
-        search = /([^&=]+)=?([^&]*)/g,
-        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-        query  = window.location.search.substring(1);
-    urlParams = {};
-    while (match = search.exec(query))
-       urlParams[decode(match[1])] = decode(match[2]);
-})();
-var output = document.getElementById("output");
-if (urlParams["style"]) output.setAttribute("style", urlParams["style"]);
-if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
-var c;
-setInterval(
-c = function() {
-	output.innerText = moment().format(urlParams["format"] || 'DD/MM/YYYY h:mm A');
-//    output.innerText = moment().format(urlParams["format"] || '');
-}, 1000);
-c();
-  </script>
+<script>
+  function updateLocalDateTime() {
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    };
+
+    const localDateTime = new Date().toLocaleString(undefined, options);
+
+    // Remove the comma from the formatted date and time
+    const formattedDateTime = localDateTime.replace(',', '');
+
+    document.getElementById('localDateTime').innerText = formattedDateTime;
+  }
+
+  // Call the function to update local date and time initially
+  updateLocalDateTime();
+
+  // Update local date and time every second (you can adjust the interval as needed)
+  setInterval(updateLocalDateTime, 1000);
+</script>
+
 </body>
 </html>
