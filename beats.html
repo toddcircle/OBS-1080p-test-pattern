@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Swatch Internet Time</title>
+    <style>
+        .swatch-time {
+            display: inline-block;
+            font-family: monospace;
+            font-size: 40px;
+            text-align: center;
+            color: #FFC336;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.0);
+        }
+    </style>
+</head>
+<body>
+    <div class="swatch-time" id="swatchTime"></div>
+
+    <script>
+        function getSwatchInternetTime() {
+            var now = new Date();
+            var hours = now.getUTCHours();
+            var minutes = now.getUTCMinutes();
+            var seconds = now.getUTCSeconds();
+
+            var beats = (hours * 3600 + minutes * 60 + seconds + 3600) / 86.4;
+            beats = beats % 1000;
+
+            var formattedBeats = '@' + pad(Math.floor(beats), 2) + '.' + pad(Math.floor((beats % 1) * 100), 2);
+
+            return formattedBeats;
+        }
+
+        function pad(num, size) {
+            var s = num + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+        function updateSwatchTime() {
+            var swatchTimeElement = document.getElementById('swatchTime');
+            if (swatchTimeElement) {
+                swatchTimeElement.textContent = getSwatchInternetTime();
+            }
+        }
+
+        // Update the time every second
+        setInterval(updateSwatchTime, 1000);
+
+        // Initial update
+        updateSwatchTime();
+    </script>
+</body>
+</html>
